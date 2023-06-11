@@ -10,6 +10,11 @@ export const siteConfig = {
       href: "/",
     },
   ],
+  images: {
+    backgrounds: {
+      auth: "",
+    },
+  },
   links: {
     twitter: "https://twitter.com/shadcn",
     github: "https://github.com/shadcn/ui",

@@ -1,11 +1,11 @@
+import { FC, ReactNode } from "react"
+
 import "@/styles/globals.css"
 import { Metadata } from "next"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
-import { SiteHeader } from "@/components/site-header"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
@@ -18,21 +18,17 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
 }
 
-interface RootLayoutProps {
-  children: React.ReactNode
+interface AuthLayoutProps {
+  children: ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+const Layout: FC<AuthLayoutProps> = ({ children }) => {
   return (
     <>
       <html lang="en" suppressHydrationWarning>
+        {/*eslint-disable-next-line @next/next/no-head-element*/}
         <head />
         <body
           className={cn(
@@ -42,13 +38,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
-              <SiteHeader />
               <div className="flex-1">{children}</div>
             </div>
-            <TailwindIndicator />
           </ThemeProvider>
         </body>
       </html>
     </>
   )
 }
+
+export default Layout
