@@ -8,7 +8,9 @@ import { BiArrowToLeft, BiArrowToRight } from "react-icons/bi"
 import { BsListTask } from "react-icons/bs"
 import { FaBug, FaTh } from "react-icons/fa"
 import { IoIosHelpBuoy, IoIosSettings } from "react-icons/io"
+import { RiAdminFill } from "react-icons/ri"
 
+import { cn } from "@/lib/utils"
 import useWindowSize from "@/hooks/use-window-size"
 
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
@@ -51,9 +53,9 @@ export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
       icon: <IoIosHelpBuoy />,
     },
     {
-      path: "/settings",
-      name: "Settings",
-      icon: <IoIosSettings />,
+      path: "/administration",
+      name: "Administration",
+      icon: <RiAdminFill className="fill-destructive" />,
     },
   ]
 
@@ -69,7 +71,6 @@ export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
     if (isOpen) setIsOpen(false)
     if (canOpen) setCanOpen(false)
   } else {
-    console.log("canOpen")
     if (!canOpen) {
       setCanOpen(true)
       setIsOpen(true)
@@ -81,8 +82,8 @@ export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
       className="sticky left-0 top-0 flex h-screen flex-col border-r-[1px] bg-primary-foreground transition-all"
       style={{ width: isOpen ? "16rem" : "56px" }}
     >
-      <div className="flex h-16 w-full items-center bg-secondary">
-        <Avatar className="fixed left-2">
+      <div className="bg-second flex h-12 w-full items-center bg-secondary">
+        <Avatar className="fixed left-3 h-8 w-8">
           {/* Company Image Here */}
           <AvatarImage src="" alt="company name" />
           <AvatarFallback className="bg-card-foreground text-card">
@@ -96,24 +97,18 @@ export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
           Company Name
         </h1>
       </div>
-      <div className="grow">
+      <div className="mt-1 grow">
         {menuItems.map((item, index) => {
           return (
             <div className="flex h-12 w-full justify-start">
-              {pathname === item.path ? (
-                <div className="h-full w-1 bg-card-foreground"></div>
-              ) : (
-                <></>
-              )}
-              <div
-                className={
-                  "h-12 w-full flex items-center justify-start hover:bg-blue-500 transition-colors " +
-                  (pathname === item.path ? "bg-blue-500" : "")
-                }
-              >
+              <div className="flex h-12 w-full items-center justify-center">
                 <Link
                   href={item.path}
-                  className="link flex items-center justify-start p-5"
+                  className={cn(
+                    buttonVariants({ size: "sm", variant: "ghost" }),
+                    "link flex h-[calc(100%-8px)] w-[calc(100%-16px)] items-center justify-start p-5 pl-[13px]",
+                    pathname === item.path ? "bg-accent" : "hover:bg-primary/10"
+                  )}
                 >
                   <div>{item.icon}</div>
                   <div
