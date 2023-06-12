@@ -36,7 +36,7 @@ export function SiteHeader({ children, sidebarState }: SiteHeaderProps) {
         sidebarIsOpen ? "w-[100%]" : "w-[calc(100%+200px)]"
       )}
     >
-      <div className="container flex h-12 items-center space-x-4 sm:justify-between sm:space-x-0">
+      <div className="container flex h-12 items-center space-x-4 sm:max-w-none sm:justify-between sm:space-x-0">
         <div className="flex items-center justify-center gap-4">
           <div className="flex items-center justify-center gap-1">
             <Input

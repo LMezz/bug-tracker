@@ -84,7 +84,6 @@ export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
     >
       <div className="bg-second flex h-12 w-full items-center bg-secondary">
         <Avatar className="fixed left-3 h-8 w-8">
-          {/* Company Image Here */}
           <AvatarImage src="" alt="company name" />
           <AvatarFallback className="bg-card-foreground text-card">
             CN
