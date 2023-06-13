@@ -10,6 +10,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
+import { SearchBar } from "./search-bar"
 import { Input } from "./ui/input"
 import {
   Tooltip,
@@ -38,16 +39,7 @@ export function SiteHeader({ children, sidebarState }: SiteHeaderProps) {
     >
       <div className="container flex h-12 items-center space-x-4 sm:max-w-none sm:justify-between sm:space-x-0">
         <div className="flex items-center justify-center gap-4">
-          <div className="flex items-center justify-center gap-1">
-            <Input
-              type="search"
-              placeholder="Search"
-              className=" sm:min-w-64 h-8 w-[96px] min-w-[96px] sm:w-64"
-            ></Input>
-            <Button variant="ghost" className="h-8 w-8 p-[6px]">
-              <AiOutlineSearch className="h-6 w-6" />
-            </Button>
-          </div>
+          <SearchBar />
           {children}
         </div>
         <div className="flex items-center justify-center gap-3">

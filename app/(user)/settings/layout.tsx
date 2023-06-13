@@ -3,13 +3,12 @@
 import { FC, ReactNode } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { AiOutlineBell, AiOutlineMail, AiOutlineSetting } from "react-icons/ai"
-import { BiPaint } from "react-icons/bi"
-import { BsPerson, BsShieldCheck, BsShieldFillCheck } from "react-icons/bs"
 
+import settingsPages from "@/config/settings-pages"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { buttonVariants } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -18,49 +17,6 @@ interface SettingsLayoutProps {
 }
 
 const Layout: FC<SettingsLayoutProps> = ({ children }) => {
-  const sections = [
-    {
-      name: "General",
-      pages: [
-        {
-          name: "Profile",
-          path: "/settings/profile",
-          icon: <BsPerson />,
-        },
-        {
-          name: "Account",
-          path: "/settings/account",
-          icon: <AiOutlineSetting />,
-        },
-        {
-          name: "Appearance",
-          path: "/settings/appearance",
-          icon: <BiPaint />,
-        },
-        {
-          name: "Notifications",
-          path: "/settings/notifications",
-          icon: <AiOutlineBell />,
-        },
-      ],
-    },
-    {
-      name: "Access",
-      pages: [
-        {
-          name: "Emails",
-          path: "/settings/emails",
-          icon: <AiOutlineMail />,
-        },
-        {
-          name: "Password and authentication",
-          path: "/settings/security",
-          icon: <BsShieldCheck />,
-        },
-      ],
-    },
-  ]
-
   const pathname = usePathname()
 
   return (
@@ -77,23 +33,19 @@ const Layout: FC<SettingsLayoutProps> = ({ children }) => {
           </div>
         </div>
         <div>
-          {sections.map((section, sectionIndex) => {
+          {settingsPages.map((section, sectionIndex) => {
             return (
-              <div>
-                {sectionIndex == 0 ? (
-                  <></>
-                ) : (
-                  <Separator className="mb-8 mt-2" />
-                )}
+              <div key={sectionIndex}>
                 {section.name ? (
                   <h1 className="mb-2">{section.name}</h1>
                 ) : (
                   <></>
                 )}
-                <div className="flex flex-col gap-y-1">
+                <Card className="mb-6 flex flex-col gap-y-1 p-2">
                   {section.pages.map((page, pageIndex) => {
                     return (
                       <Link
+                        key={pageIndex}
                         className={cn(
                           buttonVariants({
                             size: "sm",
@@ -113,7 +65,7 @@ const Layout: FC<SettingsLayoutProps> = ({ children }) => {
                       </Link>
                     )
                   })}
-                </div>
+                </Card>
               </div>
             )
           })}

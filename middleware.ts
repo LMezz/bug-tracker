@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url)   
   }
   if (url.pathname === "/settings") {
-    url.pathname = "/settings/account"
+    url.pathname = "/settings/profile"
     return NextResponse.redirect(url)
   }
 }

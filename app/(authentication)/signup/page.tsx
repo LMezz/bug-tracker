@@ -35,6 +35,7 @@ export const metadata: Metadata = {
 }
 
 const formSchema = z.object({
+  username: z.string().min(3).max(48),
   email: z.string().email(),
   password: z.string().min(8).max(4096),
 })
@@ -45,6 +46,7 @@ export default function LoginPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      username: "",
       email: "",
       password: "",
     },
@@ -61,10 +63,8 @@ export default function LoginPage() {
         <div>
           <Card className="mx-8 w-[90%] max-w-sm sm:w-96">
             <CardHeader>
-              <CardTitle>Welcome back!</CardTitle>
-              <CardDescription>
-                Report, track, and resolve bugs in development.
-              </CardDescription>
+              <CardTitle>Sign up</CardTitle>
+              <CardDescription>Create a new account</CardDescription>
             </CardHeader>
             <CardContent>
               <Form {...form}>
@@ -72,6 +72,19 @@ export default function LoginPage() {
                   onSubmit={form.handleSubmit(onSubmit)}
                   className="space-y-2"
                 >
+                  <FormField
+                    control={form.control}
+                    name="username"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Username</FormLabel>
+                        <FormControl>
+                          <Input type="username" placeholder="" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                   <FormField
                     control={form.control}
                     name="email"
@@ -98,23 +111,17 @@ export default function LoginPage() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit">Log In</Button>
+                  <Button type="submit">Sign Up</Button>
                 </form>
               </Form>
             </CardContent>
-            <CardFooter>
-              <Link
-                href="/forgot-password"
-                className="text-sm/[12px] text-blue-400"
-              >
-                Forgot password?
-              </Link>
-            </CardFooter>
+            {/* <CardFooter>
+            </CardFooter> */}
           </Card>
           <div className="mx-8 mt-4 flex w-[90%] items-center justify-start gap-2 pl-2">
-            <p className="text-sm/[12px]">Not registered yet?</p>
-            <Link href="/signup" className="text-sm/[12px] text-blue-400">
-              Create an Account
+            <p className="text-sm/[12px]">Already have an account?</p>
+            <Link href="/login" className="text-sm/[12px] text-blue-400">
+              Log In
             </Link>
           </div>
         </div>

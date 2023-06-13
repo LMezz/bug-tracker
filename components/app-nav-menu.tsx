@@ -3,13 +3,9 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { AiFillCalendar, AiFillProject } from "react-icons/ai"
 import { BiArrowToLeft, BiArrowToRight } from "react-icons/bi"
-import { BsListTask } from "react-icons/bs"
-import { FaBug, FaTh } from "react-icons/fa"
-import { IoIosHelpBuoy, IoIosSettings } from "react-icons/io"
-import { RiAdminFill } from "react-icons/ri"
 
+import appPages from "@/config/app-pages"
 import { cn } from "@/lib/utils"
 import useWindowSize from "@/hooks/use-window-size"
 
@@ -21,43 +17,7 @@ interface AppNavMenuProps {
 }
 
 export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
-  const menuItems = [
-    {
-      path: "/dashboard",
-      name: "Dashboard",
-      icon: <FaTh />,
-    },
-    {
-      path: "/bug-tracker",
-      name: "Bug Tracker",
-      icon: <FaBug />,
-    },
-    {
-      path: "/projects",
-      name: "Projects",
-      icon: <AiFillProject />,
-    },
-    {
-      path: "/tasks",
-      name: "My Tasks",
-      icon: <BsListTask />,
-    },
-    {
-      path: "/calendar",
-      name: "Calendar",
-      icon: <AiFillCalendar />,
-    },
-    {
-      path: "/help-center",
-      name: "Help Center",
-      icon: <IoIosHelpBuoy />,
-    },
-    {
-      path: "/administration",
-      name: "Administration",
-      icon: <RiAdminFill className="fill-destructive" />,
-    },
-  ]
+  const menuItems = appPages
 
   const pathname = usePathname()
 
@@ -99,9 +59,10 @@ export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
       <div className="mt-1 grow">
         {menuItems.map((item, index) => {
           return (
-            <div className="flex h-12 w-full justify-start">
+            <div key={index} className="flex h-12 w-full justify-start">
               <div className="flex h-12 w-full items-center justify-center">
                 <Link
+                  key={index}
                   href={item.path}
                   className={cn(
                     buttonVariants({ size: "sm", variant: "ghost" }),
