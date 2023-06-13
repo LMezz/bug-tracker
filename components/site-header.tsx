@@ -28,16 +28,18 @@ interface SiteHeaderProps {
 export function SiteHeader({ children, sidebarState }: SiteHeaderProps) {
   var sidebarIsOpen = undefined
   if (sidebarState) [sidebarIsOpen] = sidebarState
-  else sidebarIsOpen = () => false
+  else sidebarIsOpen = false
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 transition-all ",
-        sidebarIsOpen ? "w-[100%]" : "w-[calc(100%+200px)]"
+        "fixed top-0 z-40 transition-all",
+        sidebarIsOpen
+          ? "left-[16rem] w-[calc(100%-16rem)]"
+          : "left-[56px] w-[calc(100%-56px)]"
       )}
     >
-      <div className="container flex h-12 items-center space-x-4 sm:max-w-none sm:justify-between sm:space-x-0">
+      <div className="container flex h-12 items-center space-x-4 bg-background sm:max-w-none sm:justify-between sm:space-x-0">
         <div className="flex items-center justify-center gap-4">
           <SearchBar />
           {children}

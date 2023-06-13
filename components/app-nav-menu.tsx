@@ -39,7 +39,7 @@ export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
 
   return (
     <div
-      className="sticky left-0 top-0 flex h-screen flex-col border-r-[1px] bg-primary-foreground transition-all"
+      className="fixed left-0 top-0 flex h-screen flex-col border-r-[1px] bg-primary-foreground transition-all"
       style={{ width: isOpen ? "16rem" : "56px" }}
     >
       <div className="bg-second flex h-12 w-full items-center bg-secondary">

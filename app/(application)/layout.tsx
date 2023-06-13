@@ -34,7 +34,8 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const sidebarIsOpen = useState(false)
+  const sidebarState = useState(false)
+  const [sidebarIsOpen, _] = sidebarState
 
   return (
     <>
@@ -50,10 +51,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
               <div className="flex">
-                <AppNavMenu sidebarState={sidebarIsOpen} />
+                <AppNavMenu sidebarState={sidebarState} />
                 <div className="w-[calc(100%-16rem)]">
-                  <SiteHeader sidebarState={sidebarIsOpen} />
-                  <div>{children}</div>
+                  <SiteHeader sidebarState={sidebarState} />
+                  <div
+                    className={cn(
+                      "mt-[4rem] transition-all",
+                      sidebarIsOpen ? "ml-[17rem]" : "ml-[calc(56px+1rem)]"
+                    )}
+                  >
+                    {children}
+                  </div>
                 </div>
               </div>
             </div>

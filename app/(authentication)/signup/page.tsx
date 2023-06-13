@@ -59,9 +59,9 @@ export default function LoginPage() {
 
   return (
     <div className="flex h-screen max-h-full w-screen">
-      <div className="grid h-screen max-h-full w-[100%] place-items-center border-r-[1px] bg-secondary text-card-foreground shadow-sm sm:w-[32rem]">
-        <div>
-          <Card className="mx-8 w-[90%] max-w-sm sm:w-96">
+      <div className="grid h-screen max-h-full w-[100%] place-items-center border-r-[1px] bg-secondary px-4 text-card-foreground shadow-sm sm:w-[32rem]">
+        <div className="w-[90%] items-center justify-start sm:w-96">
+          <Card className="w-[100%]">
             <CardHeader>
               <CardTitle>Sign up</CardTitle>
               <CardDescription>Create a new account</CardDescription>
@@ -118,7 +118,7 @@ export default function LoginPage() {
             {/* <CardFooter>
             </CardFooter> */}
           </Card>
-          <div className="mx-8 mt-4 flex w-[90%] items-center justify-start gap-2 pl-2">
+          <div className="mt-4 flex w-[90%] items-center justify-start gap-2 pl-2">
             <p className="text-sm/[12px]">Already have an account?</p>
             <Link href="/login" className="text-sm/[12px] text-blue-400">
               Log In
@@ -126,7 +126,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      <div className="container w-[100%] grow"></div>
     </div>
   )
 }

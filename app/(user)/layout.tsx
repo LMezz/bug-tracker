@@ -57,7 +57,7 @@ const Layout: FC<UserLayoutProps> = ({ children }) => {
                   </div>
                 </SiteHeader>
               </div>
-              <div className="flex-1 px-5 py-7">{children}</div>
+              <div className="mt-[4rem] flex-1 px-5 py-7">{children}</div>
             </div>
           </ThemeProvider>
         </body>
