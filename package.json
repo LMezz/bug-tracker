@@ -19,7 +19,7 @@
     "start:api": "yarn workspace @bug-tracker/api start"
   },
   "engines": {
-    "node": "18.14.1"
+    "node": ">=18.16.0"
   },
   "dependencies": {
     "concurrently": "^8.2.0"

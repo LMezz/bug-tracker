@@ -56,7 +56,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
                   <div
                     className={cn(
                       "mt-[4rem] transition-all",
-                      sidebarIsOpen ? "ml-[17rem]" : "ml-[calc(56px+1rem)]"
+                      sidebarIsOpen
+                        ? "w-[calc(100%+56px-5.5rem)] ml-[17rem]"
+                        : "w-[calc(100%+10.5rem)] ml-[calc(56px+1rem)]"
                     )}
                   >
                     {children}

@@ -4,7 +4,7 @@
   "private": true,
   "license": "LicenseRef-LICENSE",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.16.0"
   },
   "packageManager": "yarn@1.22.19",
   "scripts": {
@@ -29,6 +29,7 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.6",
+    "@tanstack/react-table": "^8.9.2",
     "chart.js": "^4.3.0",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
@@ -38,6 +39,7 @@
     "next": "^13.4.4",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.44.3",
     "react-icons": "^4.9.0",
