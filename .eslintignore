@@ -1,0 +1,5 @@
+packages/client/dist/*
+packages/client/.cache
+packages/client/public
+packages/client/node_modules
+packages/client/*.esm.js

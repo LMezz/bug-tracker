@@ -7,12 +7,16 @@
     "packages/*"
   ],
   "scripts": {
-    "app": "yarn workspace @bug-tracker/client start",
+    "dev": "concurrently --kill-others-on-fail \"yarn dev:client\" \"yarn dev:api\"",
+    "dev:client": "yarn workspace @bug-tracker/client dev",
+    "dev:api": "yarn workspace @bug-tracker/api dev",
+    "client": "yarn workspace @bug-tracker/client start",
     "server": "yarn workspace @bug-tracker/api start",
-    "build-app": "yarn workspace @bug-tracker/clinet build",
-    "build-server": "yarn workspace @bug-tracker/api build",
-    "start": "concurrently --kill-others-on-fail \"yarn app\"  \"yarn server\"",
-    "start:server": "yarn workspace @bug-tracker/api start"
+    "build-client": "yarn workspace @bug-tracker/client build",
+    "build-api": "yarn workspace @bug-tracker/api build",
+    "build": "yarn build-client && yarn build-api",
+    "start": "concurrently --kill-others-on-fail \"yarn client\"  \"yarn server\"",
+    "start:api": "yarn workspace @bug-tracker/api start"
   },
   "engines": {
     "node": "18.14.1"
