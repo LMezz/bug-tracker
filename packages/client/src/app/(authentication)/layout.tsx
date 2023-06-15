@@ -1,4 +1,5 @@
 import "@/styles/globals.css"
+
 import { FC, ReactNode } from "react"
 import { Metadata } from "next"
 
@@ -25,24 +26,9 @@ interface AuthLayoutProps {
 
 const Layout: FC<AuthLayoutProps> = ({ children }) => {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        {/*eslint-disable-next-line @next/next/no-head-element*/}
-        <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              <div className="flex-1">{children}</div>
-            </div>
-          </ThemeProvider>
-        </body>
-      </html>
-    </>
+    <div className="relative flex min-h-screen flex-col">
+      <div className="flex-1">{children}</div>
+    </div>
   )
 }
 

@@ -11,8 +11,8 @@ const appPages = [
     icon: <FaTh />,
   },
   {
-    path: "/bug-tracker",
-    name: "Bug Tracker",
+    path: "/tickets",
+    name: "Tickets",
     icon: <FaBug />,
   },
   {

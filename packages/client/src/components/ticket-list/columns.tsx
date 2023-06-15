@@ -17,7 +17,7 @@ export type IssuePriority = "none" | "low" | "medium" | "high"
 
 export type Issue = {
   id: string
-  bug: string
+  issue: string
   reporter: string
   created: string
   status: IssueStatus
@@ -55,12 +55,14 @@ function priorityComponent(priority: IssuePriority) {
 
 export const columns: ColumnDef<Issue>[] = [
   {
-    accessorKey: "bug",
+    accessorKey: "issue",
     header: ({ column }) => {
-      return <DataTableColumnHeader column={column} title={"Bug"} />
+      return <DataTableColumnHeader column={column} title={"Issue"} />
     },
     cell: ({ row }) => {
-      return <div className="text-left font-medium">{row.getValue("bug")}</div>
+      return (
+        <div className="text-left font-medium">{row.getValue("issue")}</div>
+      )
     },
   },
   {

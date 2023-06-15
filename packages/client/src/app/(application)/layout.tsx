@@ -1,15 +1,15 @@
 "use client"
 
 import "@/styles/globals.css"
+
 import React, { useState } from "react"
 import { Metadata } from "next"
 
 import { siteConfig } from "@/config/site"
-import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { AppNavMenu } from "@/components/app-nav-menu"
+import { AuthGuard } from "@/components/authorisation/auth-guard"
 import { SiteHeader } from "@/components/site-header"
-import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
   title: {
@@ -28,47 +28,36 @@ export const metadata: Metadata = {
   },
 }
 
-interface RootLayoutProps {
+interface ApplicationLayoutProps {
   children: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function ApplicationLayout({
+  children,
+}: ApplicationLayoutProps) {
   const sidebarState = useState(false)
   const [sidebarIsOpen] = sidebarState
 
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        {/*eslint-disable-next-line @next/next/no-head-element*/}
-        <head />
-        <body
-          className={cn(
-            "bg-background min-h-screen font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              <div className="flex">
-                <AppNavMenu sidebarState={sidebarState} />
-                <div className="w-[calc(100%-16rem)]">
-                  <SiteHeader sidebarState={sidebarState} />
-                  <div
-                    className={cn(
-                      "mt-[4rem] transition-all",
-                      sidebarIsOpen
-                        ? "w-[calc(100%+56px-5.5rem)] ml-[17rem]"
-                        : "w-[calc(100%+10.5rem)] ml-[calc(56px+1rem)]"
-                    )}
-                  >
-                    {children}
-                  </div>
-                </div>
-              </div>
+    <AuthGuard>
+      <div className="relative flex min-h-screen flex-col">
+        <div className="flex">
+          <AppNavMenu sidebarState={sidebarState} />
+          <div className="w-[calc(100%-16rem)]">
+            <SiteHeader sidebarState={sidebarState} />
+            <div
+              className={cn(
+                "mt-[4rem] transition-all",
+                sidebarIsOpen
+                  ? "ml-[17rem] w-[calc(100%+56px-5.5rem)]"
+                  : "ml-[calc(56px+1rem)] w-[calc(100%+10.5rem)]"
+              )}
+            >
+              {children}
             </div>
-          </ThemeProvider>
-        </body>
-      </html>
-    </>
+          </div>
+        </div>
+      </div>
+    </AuthGuard>
   )
 }

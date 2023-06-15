@@ -1,33 +1,31 @@
 "use client"
 
 import { Chart as ChartJS, registerables } from "chart.js"
-import { Chart, Bar } from "react-chartjs-2"
+import { Bar } from "react-chartjs-2"
+
+import { RGBAColour, rgbaGradient } from "@/lib/utils"
 
 import ChartWidget from "../widget"
 
 ChartJS.register(...registerables)
 
-interface TicketsByPriorityProps {}
+export default function TicketsByPriority() {
+  const backgroundColor: string[] = RGBAColour.stringsFrom(
+    rgbaGradient(
+      new RGBAColour(46, 110, 140, 1),
+      new RGBAColour(101, 182, 219, 1),
+      4 // Number of assignees being displayed
+    )
+  )
 
-export default function TicketsByPriority({}: TicketsByPriorityProps) {
   const data = {
     labels: ["None", "Low", "Medium", "High"],
     datasets: [
       {
         label: "# of Tickets",
         data: [9, 19, 5, 3],
-        backgroundColor: [
-          "rgba(46, 110, 140, 1)",
-          "rgba(64, 133, 166, 1)",
-          "rgba(83, 157, 192, 1)",
-          "rgba(101, 182, 219, 1)",
-        ],
-        borderColor: [
-          "rgba(46, 110, 140, 1)",
-          "rgba(64, 133, 166, 1)",
-          "rgba(83, 157, 192, 1)",
-          "rgba(101, 182, 219, 1)",
-        ],
+        backgroundColor,
+        borderColor: backgroundColor,
         borderWidth: 1,
       },
     ],

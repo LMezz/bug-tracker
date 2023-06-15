@@ -118,14 +118,12 @@ export function SearchBar() {
                   </CommandItem>
                 </DialogTrigger>
               </Link>
-              <Link href="/">
-                <DialogTrigger className="w-full">
-                  <CommandItem>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                  </CommandItem>
-                </DialogTrigger>
-              </Link>
+              <DialogTrigger className="w-full">
+                <CommandItem>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </CommandItem>
+              </DialogTrigger>
             </CommandGroup>
             <CommandGroup heading="Settings">
               {settingsPages.map((section) => {

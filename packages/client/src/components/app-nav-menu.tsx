@@ -3,9 +3,9 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import appPages from "@/config/app-pages"
 import { BiArrowToLeft, BiArrowToRight } from "react-icons/bi"
 
+import appPages from "@/config/app-pages"
 import { cn } from "@/lib/utils"
 import useWindowSize from "@/hooks/use-window-size"
 
@@ -39,10 +39,10 @@ export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
 
   return (
     <div
-      className="fixed left-0 top-0 flex h-screen flex-col border-r-[1px] bg-primary-foreground transition-all"
+      className="bg-primary-foreground fixed left-0 top-0 flex h-screen flex-col border-r-[1px] transition-all"
       style={{ width: isOpen ? "16rem" : "56px" }}
     >
-      <div className="bg-second flex h-12 w-full items-center bg-secondary">
+      <div className="bg-second bg-secondary flex h-12 w-full items-center">
         <Avatar className="fixed left-3 h-8 w-8">
           <AvatarImage src="" alt="company name" />
           <AvatarFallback className="bg-card-foreground text-card">
@@ -50,7 +50,7 @@ export function AppNavMenu({ sidebarState }: AppNavMenuProps) {
           </AvatarFallback>
         </Avatar>
         <h1
-          className="fixed left-14 font-medium text-card-foreground transition-all"
+          className="text-card-foreground fixed left-14 font-medium transition-all"
           style={{ opacity: isOpen ? 1 : 0 }}
         >
           Company Name

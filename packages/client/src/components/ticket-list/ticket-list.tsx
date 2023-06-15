@@ -30,7 +30,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[]
 }
 
-export function IssueListTable<TData, TValue>({
+export function TicketListTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -58,14 +58,14 @@ export function IssueListTable<TData, TValue>({
     <div>
       <div className="flex items-center pb-4">
         <Input
-          placeholder="Filter bugs..."
-          value={(table.getColumn("bug")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter issues..."
+          value={(table.getColumn("issue")?.getFilterValue() as string) ?? ""}
           // Create a filtering system like
-          // bug:not created:14/06/2023
+          // issue:not created:14/06/2023
           // To allow filtering of multiple categories.
-          // By default it will filter bug names
+          // By default it will filter issue names
           onChange={(event) =>
-            table.getColumn("bug")?.setFilterValue(event.target.value)
+            table.getColumn("issue")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

@@ -1,12 +1,12 @@
-import { columns, Issue } from "@/components/issue-list/columns"
-import { IssueListTable } from "@/components/issue-list/issue-list"
+import { columns, Ticket } from "@/components/ticket-list/columns"
+import { TicketListTable } from "@/components/ticket-list/ticket-list"
 
-async function getData(): Promise<Issue[]> {
+async function getData(): Promise<Ticket[]> {
   // Fetch data from your API here.
   return [
     {
       id: "728ed52f",
-      bug: "Fetched data invisible",
+      issue: "Fetched data invisible",
       reporter: "LMezz",
       created: "14/06/2023",
       status: "in-progress",
@@ -15,7 +15,7 @@ async function getData(): Promise<Issue[]> {
     },
     {
       id: "20374o827",
-      bug: "Test issue",
+      issue: "Test issue",
       reporter: "NewProgrammer83",
       created: "8/05/2023",
       status: "resolved",
@@ -26,12 +26,12 @@ async function getData(): Promise<Issue[]> {
   ]
 }
 
-export default async function BugTrackerPage() {
+export default async function TicketsPage() {
   const data = await getData()
   return (
     <section className="container grid py-[1.5em]">
       <div className="py-2">
-        <IssueListTable columns={columns} data={data} />
+        <TicketListTable columns={columns} data={data} />
       </div>
     </section>
   )

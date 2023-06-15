@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/context/AuthContext"
 import {
   Cloud,
   Github,
@@ -24,9 +25,10 @@ import {
 
 export function UserMenu() {
   const router = useRouter()
+  const { logout } = useAuth()
 
   const logOut = () => {
-    console.log("Logged out.")
+    if (logout) logout()
     router.replace("/login")
   }
 
