@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { Metadata } from "next"
 import { useRouter } from "next/navigation"
+import { createUser } from "@/api/authentication"
 import { useAuth } from "@/context/AuthContext"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { User, UserCredential } from "firebase/auth"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
+import { SignupInfo } from "@/types/authentication"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -62,16 +65,21 @@ export default function SignupForm() {
     if (!signup) return
     try {
       setError(false)
-      await signup({
+      const info: SignupInfo = {
         username: values.username,
         email: values.email,
         password: values.password,
-      })
+      }
+      const userCredential: UserCredential = await signup(info)
+      const user: User = userCredential.user
+      const jwt: string = await user.getIdToken()
+      await createUser(jwt, info)
       router.push("/dashboard")
     } catch (err) {
       setError(true)
     }
   }
+
   return (
     <>
       <Form {...form}>

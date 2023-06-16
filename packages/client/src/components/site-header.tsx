@@ -34,7 +34,7 @@ export function SiteHeader({ children, sidebarState }: SiteHeaderProps) {
           : "left-[56px] w-[calc(100%-56px)]"
       )}
     >
-      <div className="container flex h-12 items-center space-x-4 bg-background sm:max-w-none sm:justify-between sm:space-x-0">
+      <div className="bg-background container flex h-12 items-center space-x-4 sm:max-w-none sm:justify-between sm:space-x-0">
         <div className="flex items-center justify-center gap-4">
           <SearchBar />
           {children}
@@ -63,7 +63,7 @@ export function SiteHeader({ children, sidebarState }: SiteHeaderProps) {
           <div className="flex h-6 w-6 items-center justify-center">
             <Avatar className="h-6 w-6 rounded-full p-0">
               <AvatarImage src="https://github.com/LMezz.png" alt="@user" />
-              <AvatarFallback className="bg-card-foreground text-sm text-card">
+              <AvatarFallback className="bg-card-foreground text-card text-sm">
                 LM
               </AvatarFallback>
             </Avatar>
@@ -72,41 +72,6 @@ export function SiteHeader({ children, sidebarState }: SiteHeaderProps) {
             </div>
           </div>
         </div>
-
-        {/* <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-1">
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={buttonVariants({
-                  size: "sm",
-                  variant: "ghost",
-                })}
-              >
-                <Icons.gitHub className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </div>
-            </Link>
-            <Link
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={buttonVariants({
-                  size: "sm",
-                  variant: "ghost",
-                })}
-              >
-                <Icons.twitter className="h-5 w-5 fill-current" />
-                <span className="sr-only">Twitter</span>
-              </div>
-            </Link>
-          </nav>
-        </div> */}
       </div>
     </header>
   )

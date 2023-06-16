@@ -20,7 +20,6 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
   if (loading) return <div></div>
 
-  console.log(currentUser)
   if (!loading && currentUser) return <>{children}</>
 
   return null

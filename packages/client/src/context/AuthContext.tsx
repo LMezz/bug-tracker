@@ -14,13 +14,15 @@ import {
   UserCredential,
 } from "firebase/auth"
 
+import { LoginInfo, SignupInfo } from "@/types/authentication"
+
 export interface AuthContextProps {
   currentUser: User | null
   loading: boolean
   setRedirect?(path: string): void
   login?(info: LoginInfo): Promise<UserCredential>
   signup?(info: SignupInfo): Promise<UserCredential>
-  logout?(): Promise<void>
+  logout?(): void
 }
 
 const AuthContext = React.createContext<AuthContextProps>({
@@ -30,17 +32,6 @@ const AuthContext = React.createContext<AuthContextProps>({
 
 export function useAuth() {
   return useContext(AuthContext)
-}
-
-export type SignupInfo = {
-  username: string
-  email: string
-  password: string
-}
-
-export type LoginInfo = {
-  email: string
-  password: string
 }
 
 interface AuthProviderProps {
@@ -55,16 +46,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function signup(info: SignupInfo): Promise<UserCredential> {
     await setPersistence(auth, browserLocalPersistence)
-    return createUserWithEmailAndPassword(auth, info.email, info.password)
+    return await createUserWithEmailAndPassword(auth, info.email, info.password)
   }
 
   async function login(info: LoginInfo): Promise<UserCredential> {
     await setPersistence(auth, browserLocalPersistence)
-    return signInWithEmailAndPassword(auth, info.email, info.password)
+    return await signInWithEmailAndPassword(auth, info.email, info.password)
   }
 
-  function logout(): Promise<void> {
-    return signOut(auth)
+  async function logout(): Promise<void> {
+    await signOut(auth)
   }
 
   useEffect(() => {
